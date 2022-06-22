@@ -13,6 +13,8 @@ public class LoginPageMO {
 //			this.driver= driver;
 //	}
 		
+	
+	//Making some changes just to commit 	
 		//page facotry: OR
 		@FindBy(name="email") WebElement uname;
 		

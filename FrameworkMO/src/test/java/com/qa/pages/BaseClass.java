@@ -9,11 +9,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.beust.jcommander.Parameter;
 import com.qa.utility.BrowserFactory;
 import com.qa.utility.ConfigDataProvider;
 import com.qa.utility.ExcelDataProvider;
@@ -41,11 +43,16 @@ public class BaseClass{
 				
 				Reporter.log("Setting and Configurations done-- Test can be Started",true);
 			}
+			
+			@Parameters({"browser", "urlToBeTested"})
 			@BeforeClass
-			public void setup() {
+			public void setup(String browser, String url) {
 				
 				Reporter.log("Trying to start browser",true);
-				driver = BrowserFactory.startApplication(driver, configdp.getBrowser(), configdp.getStagingURL());
+				
+				//driver = BrowserFactory.startApplication(driver, configdp.getBrowser(), configdp.getStagingURL());
+				
+				driver = BrowserFactory.startApplication(driver, browser,url);
 				
 				Reporter.log("Browser is up and running",true);
 			}
